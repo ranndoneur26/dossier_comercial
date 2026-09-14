@@ -119,6 +119,43 @@
       color: var(--color-burgundy);
     }
 
+    /* Mobile nav toggle (hamburger) */
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      width: 40px;
+      height: 40px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      flex-shrink: 0;
+    }
+
+    .nav-toggle-bar {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background-color: var(--color-burgundy);
+      border-radius: 2px;
+      transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+
+    .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(2) {
+      opacity: 0;
+    }
+
+    .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
     .btn-header-cta {
       padding: 8px 18px;
       background-color: var(--color-burgundy);
@@ -911,8 +948,57 @@
         padding: 24px 18px;
       }
 
+      .header-container {
+        padding: 12px 18px;
+        flex-wrap: wrap;
+      }
+
+      .nav-toggle {
+        display: flex;
+      }
+
       .nav-links {
-        display: none;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        width: 100%;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        pointer-events: none;
+        transition: max-height 0.3s ease, opacity 0.25s ease;
+        order: 3;
+        margin-top: 0;
+      }
+
+      .nav-links.is-open {
+        max-height: 400px;
+        opacity: 1;
+        pointer-events: auto;
+        margin-top: 14px;
+        padding-top: 14px;
+        border-top: 1px solid var(--color-sand-border);
+      }
+
+      .nav-links a {
+        width: 100%;
+        padding: 12px 4px;
+        border-bottom: 1px solid var(--color-sand-border);
+        font-size: 0.95rem;
+      }
+
+      .nav-links a.btn-header-cta {
+        margin-top: 10px;
+        text-align: center;
+        border-bottom: none;
+        padding: 12px 18px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .brand-logo-img {
+        height: 56px;
       }
     }
   </style>
@@ -925,7 +1011,12 @@
       <a href="#proposta" class="brand-link">
         <img src="images/logo-cami-prior.jpg" alt="El Camí del Prior" class="brand-logo-img">
       </a>
-      <nav class="nav-links">
+      <button type="button" class="nav-toggle" id="navToggle" aria-label="Obrir menú" aria-expanded="false" aria-controls="navLinks">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+      <nav class="nav-links" id="navLinks">
         <a href="#proposta">Proposta Comercial</a>
         <a href="#adaptacio">Adaptació Multipantalla</a>
         <a href="#tarifes">Tarifes 2027</a>
@@ -1245,6 +1336,34 @@
     <p>Dossier Comercial · Format Únic d’Anunci Premium · El Camí del Prior</p>
     <p>Més informació i reserves a <a href="mailto:ruta.silenci@gmail.com?subject=Sol%C2%B7licitud%20d%27anunci%20a%20El%20Cam%C3%AD%20del%20Prior%20%E2%80%93%20%5BNom%20del%20vostre%20negoci%5D&body=Hola%2C%20equip%20d%27El%20Cam%C3%AD%20del%20Prior%3A%0A%0AVull%20donar%20a%20con%C3%A8ixer%20el%20meu%20negoci%20als%20visitants%20i%20senderistes%20del%20Priorat%20a%20trav%C3%A9s%20de%20la%20vostra%20plataforma%20web.%0A%0AA%20continuaci%C3%B3%20us%20facilito%20les%20dades%20del%20meu%20establiment%2C%20la%20modalitat%20escollida%2C%20els%20materials%20i%20la%20informaci%C3%B3%20necess%C3%A0ria%3A%0A%0A1.%20DADES%20DEL%20COMER%C3%87%20O%20ESTABLIMENT%0A-%20Nom%20comercial%3A%20%0A-%20Sector%20d%27activitat%20%28allotjament%2C%20restaurant%2C%20celler%2C%20comer%C3%A7%20local%2C%20activitats%29%3A%20%0A-%20Municipi%20/%20Ubicaci%C3%B3%3A%20%0A-%20Tel%C3%A8fon%20i%20horaris%20d%27atenci%C3%B3%3A%20%0A-%20Persona%20de%20contacte%3A%20%0A%0A2.%20MODALITAT%20DE%20PUBLICITAT%20D%27INTER%C3%88S%20%28marqueu%20una%20opci%C3%B3%29%0A%5B%20%5D%20Opci%C3%B3%20A%3A%20Banner%20Interactiu%20%28Hero%20Banner%20desktop%20%2B%20m%C3%B2bil%20amb%20enlla%C3%A7%20directe%20a%20web/reserves%29%20%E2%80%93%20390%20%E2%82%AC/any%20%28%2B%20IVA%29%0A%5B%20%5D%20Opci%C3%B3%20B%3A%20Banner%20Informatiu%20Corporatiu%20%28pres%C3%A8ncia%20est%C3%A0tica%20i%20directori%20a%20Entitats%20Col%C2%B7laboradores%29%20%E2%80%93%20190%20%E2%82%AC/any%20%28%2B%20IVA%29%0A%0A3.%20ELEMENTS%20PER%20A%20LA%20CREACI%C3%93%20O%20PUBLICACI%C3%93%20DEL%20BANNER%0A-%20Enlla%C3%A7%20de%20destinaci%C3%B3%20%28nom%C3%A9s%20per%20a%20l%27Opci%C3%B3%20A%3A%20web%20oficial%2C%20Booking%20o%20motor%20de%20reserves%29%3A%20%0A-%20Text%20del%20bot%C3%B3%20d%27acci%C3%B3%20preferit%20%28Ex%3A%20%22Reservar%20taula%22%2C%20%22Comprar%20vins%22%2C%20%22M%C3%A9s%20informaci%C3%B3%22%29%3A%20%0A-%20Frase%20breu%20de%20reclam%20/%20proposta%20de%20valor%20%28m%C3%A0xim%201%20l%C3%ADnia%29%3A%20%0A-%20Elements%20gr%C3%A0fics%20que%20adjunto%20a%20aquest%20correu%3A%0A%20%20%2A%20Logotip%20en%20fons%20transparent%20%28format%20SVG%20o%20PNG%29%0A%20%20%2A%201%20o%202%20fotografies%20del%20local%2C%20paisatge%20o%20producte%20en%20alta%20resoluci%C3%B3%20%28m%C3%ADnim%201200%20px%20d%27amplada%2C%20horitzontals%29%0A%20%20%2A%20%28Opcional%29%20Creativitats%20ja%20preparades%20en%20mides%20oficials%20%28Desktop%3A%201200x200%20px%20%7C%20M%C3%B2bil%3A%20360x180%20px%29%0A%0A4.%20ASSIST%C3%88NCIA%20EN%20DISSENY%0A%5B%20%5D%20Adjunto%20el%20material%20gr%C3%A0fic%20necessari%20perqu%C3%A8%20munteu%20el%20b%C3%A0ner%20seguint%20la%20l%C3%ADnia%20editorial%20del%20web.%0A%5B%20%5D%20Adjunto%20directament%20els%20fitxers%20finals%20adaptats%20a%201200x200%20px%20i%20360x180%20px.%0A%0A5.%20DADES%20DE%20FACTURACI%C3%93%20I%20CONDICIONS%20D%27ACTIVACI%C3%93%0A%28Dades%20necess%C3%A0ries%20per%20a%20l%27emissi%C3%B3%20de%20la%20factura%20oficial%20un%20cop%20aprovada%20la%20proposta%29%3A%0A-%20Ra%C3%B3%20social%20completa%20o%20Nom%20i%20cognoms%20%28si%20sou%20aut%C3%B2nom/a%29%3A%20%0A-%20NIF%20/%20CIF%3A%20%0A-%20Adre%C3%A7a%20fiscal%20completa%20%28carrer%2C%20n%C3%BAmero%2C%20escala/pis/porta%29%3A%20%0A-%20Codi%20Postal%3A%20%0A-%20Poblaci%C3%B3%20i%20Prov%C3%ADncia%3A%20%0A-%20Correu%20electr%C3%B2nic%20per%20a%20l%27enviament%20de%20factures%3A%20%0A-%20M%C3%A8tode%20de%20pagament%20preferit%3A%0A%20%20%5B%20%5D%20Transfer%C3%A8ncia%20banc%C3%A0ria%20%28rebreu%20el%20compte%20d%27ingr%C3%A9s%20juntament%20amb%20la%20factura%29%0A%20%20%5B%20%5D%20Domiciliaci%C3%B3%20banc%C3%A0ria%20%28indiqueu%20el%20vostre%20IBAN%3A%20ES__%20____%20____%20____%20____%20____%29%0A%0A%2A%20Comprom%C3%ADs%20i%20condicions%20d%27activaci%C3%B3%3A%0A-%20Validaci%C3%B3%20pr%C3%A8via%3A%20no%20es%20factura%20l%27anunci%20fins%20que%20el%20disseny%20final%20estigui%20completament%20revisat%20i%20validat%20pel%20client.%0A-%20Activaci%C3%B3%3A%20un%20cop%20efectuat%20el%20pagament%2C%20s%27incorporar%C3%A0%20immediatament%20l%27anunci%20en%20el%20lloc%20acordat%20de%20la%20web.%0A%0AObservacions%20o%20comentaris%20addicionals%3A%0A%5BEscriu%20aqu%C3%AD%20qualsevol%20detall%20extra%5D%0A%0AAtentament%2C%0A%5BNom%20i%20cognoms%5D%0A%5BTel%C3%A8fon%20de%20contacte%5D">ruta.silenci@gmail.com</a> · <a href="https://ruta-circular-priorat.vercel.app" target="_blank" rel="noopener noreferrer">Visitar la web</a></p>
   </footer>
+
+  <script>
+    (function () {
+      var toggle = document.getElementById('navToggle');
+      var nav = document.getElementById('navLinks');
+      if (!toggle || !nav) return;
+
+      function closeMenu() {
+        nav.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.setAttribute('aria-label', 'Obrir menú');
+      }
+
+      toggle.addEventListener('click', function () {
+        var isOpen = nav.classList.toggle('is-open');
+        toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        toggle.setAttribute('aria-label', isOpen ? 'Tancar menú' : 'Obrir menú');
+      });
+
+      nav.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', closeMenu);
+      });
+
+      window.addEventListener('resize', function () {
+        if (window.innerWidth > 900) closeMenu();
+      });
+    })();
+  </script>
 
 </body>
 </html>
