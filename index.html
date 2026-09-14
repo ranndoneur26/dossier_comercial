@@ -536,14 +536,14 @@
       font-weight: 700;
     }
 
-    .contact-box .contact-url {
+    .contact-box .contact-url-site {
       font-size: 1.15rem;
       font-weight: 700;
       color: var(--color-burgundy);
       text-decoration: none;
     }
 
-    .contact-box .contact-url:hover {
+    .contact-box .contact-url-site:hover {
       text-decoration: underline;
     }
 
@@ -757,11 +757,99 @@
       color: var(--color-text-main);
     }
 
+    /* Commercial Note & Call to Action */
+    .commercial-note {
+      margin-top: 28px;
+      padding: 24px;
+      border: 1px solid rgba(180, 143, 79, 0.38);
+      border-left: 4px solid #b48f4f;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #fcfaf6, #f4ecdd);
+    }
+
+    .commercial-note strong:first-child {
+      display: block;
+      margin-bottom: 12px;
+      color: #6e5125;
+      font-family: Georgia, serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .commercial-note p {
+      margin: 0 0 10px;
+      line-height: 1.65;
+    }
+
+    .cta-action-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 16px;
+      margin-top: 14px;
+    }
+
+    .contact-url {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 20px;
+      border-radius: 7px;
+      background: #6e5125;
+      color: #fff !important;
+      font-weight: 700;
+      line-height: 1.3;
+      text-decoration: none;
+      transition: background 0.2s ease, transform 0.2s ease;
+      box-shadow: 0 4px 12px rgba(110, 81, 37, 0.25);
+    }
+
+    .contact-url:hover {
+      background: #b48f4f;
+      transform: translateY(-2px);
+    }
+
+    /* Intermittent / Pulsing Callout */
+    .pulsing-notice {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #b33917;
+      animation: pulseBlink 1.8s infinite ease-in-out;
+    }
+
+    @keyframes pulseBlink {
+      0% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.35; transform: scale(0.98); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    .phone-contact-note {
+      font-size: 0.82rem;
+      color: #7a6b57;
+      margin-top: 10px;
+      letter-spacing: 0.02em;
+    }
+
+    .phone-contact-note a {
+      color: #6e5125;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .phone-contact-note a:hover {
+      text-decoration: underline;
+    }
+
     .notes-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: 1fr;
       gap: 18px;
       padding-top: 20px;
+      margin-top: 24px;
       border-top: 1px solid var(--color-sand-border);
     }
 
@@ -811,7 +899,7 @@
 
     /* Responsive */
     @media (max-width: 900px) {
-      .grid-2, .grid-3, .structure-grid, .tarifa-grid, .notes-grid {
+      .grid-2, .grid-3, .structure-grid, .tarifa-grid {
         grid-template-columns: 1fr;
       }
 
@@ -825,6 +913,11 @@
 
       .nav-links {
         display: none;
+      }
+
+      .cta-action-wrapper {
+        flex-direction: column;
+        align-items: flex-start;
       }
     }
   </style>
@@ -1009,7 +1102,7 @@
         <div class="contact-box">
           <div class="contact-meta">
             <h5>Informació i Reserves de Patrocini</h5>
-            <a href="https://ruta-circular-priorat.vercel.app" target="_blank" rel="noopener noreferrer" class="contact-url">ruta-circular-priorat.vercel.app</a>
+            <a href="https://ruta-circular-priorat.vercel.app" target="_blank" rel="noopener noreferrer" class="contact-url-site">ruta-circular-priorat.vercel.app</a>
           </div>
           <div class="contact-desc">
             Contacteu amb l’equip de gestió del projecte per contractar l’espai o sol·licitar assistència de disseny.
@@ -1117,13 +1210,42 @@
             <li><strong>Renovació:</strong> automàtica per períodes d’1 any, excepte comunicació en sentit contrari.</li>
             <li><strong>Avís:</strong> el web informa amb un mínim de 15 dies abans de la renovació.</li>
             <li><strong>Preu:</strong> el 2027 s’aplica la tarifa de llançament. En renovar, s’aplica la tarifa habitual indicada, llevat que s’hagi comunicat una tarifa nova.</li>
-            <li><strong>IVA:</strong> imports sense IVA; s’aplicarà l’impost legal vigent. L’anunciant facilita les creativitats 1200×200 i 360×180.</li>
+            <li><strong>IVA:</strong> imports sense IVA; s’aplicarà l’impost legal vigent. L’anunciant facilita les creativitats 1200×200 i 360×180. O bé les realitzem nosaltres sense cost durant tot el 2027.</li>
           </ul>
 
-          <div class="notes-grid">
-            <div class="note-box">
-              <strong>Recomanació comercial:</strong> limitar el nombre d’anunciants per preservar l’exclusivitat i la percepció premium de l’espai.
+          <!-- Bloc Disponibilitat dels espais publicitaris -->
+          <div class="commercial-note">
+            <strong>Disponibilitat dels espais publicitaris</strong>
+            <p>
+              A la pàgina inicial hi haurà un únic anunci per etapa, amb un màxim de
+              <strong>8 anuncis</strong>, per preservar l’exclusivitat i la percepció
+              premium de l’espai.
+            </p>
+            <p>
+              A l’espai d’<strong>Entitats Col·laboradores</strong> no hi haurà límit
+              d’anunciants. Les incorporacions es publicaran un sota l’altre, seguint
+              l’ordre de contractació.
+            </p>
+
+            <div class="cta-action-wrapper">
+              <a
+                class="contact-url"
+                href="mailto:ruta.silenci@gmail.com?subject=Sol%C2%B7licitud%20d%27anunci%20a%20El%20Cam%C3%AD%20del%20Prior%20%E2%80%93%20%5BNom%20del%20vostre%20negoci%5D&body=Hola%2C%20equip%20d%27El%20Cam%C3%AD%20del%20Prior%3A%0A%0AVull%20donar%20a%20con%C3%A8ixer%20el%20meu%20negoci%20als%20senderistes%20i%20visitants%20del%20Priorat%20a%20trav%C3%A9s%20de%20la%20vostra%20plataforma%20web.%0A%0AA%20continuaci%C3%B3%20us%20indico%20les%20dades%20principals%20del%20meu%20establiment%20i%20la%20modalitat%20que%20m%27interessa%3A%0A%0A1.%20DADES%20DEL%20COMER%C3%87%20O%20ESTABLIMENT%0A-%20Nom%20comercial%3A%20%0A-%20Sector%20d%27activitat%20%28allotjament%2C%20restaurant%2C%20celler%2C%20comer%C3%A7%20local%2C%20activitats%29%3A%20%0A-%20Municipi%20%2F%20Ubicaci%C3%B3%3A%20%0A-%20Tel%C3%A8fon%20i%20horaris%20d%27atenci%C3%B3%3A%20%0A-%20Persona%20de%20contacte%3A%20%0A%0A2.%20MODALITAT%20DE%20PUBLICITAT%20D%27INTER%C3%88S%0A%5B%20%5D%20Opci%C3%B3%20A%3A%20Banner%20Interactiu%20%28Hero%20Banner%20desktop%20%2B%20m%C3%B2bil%20amb%20bot%C3%B3%20directe%20a%20la%20meva%20web%2Freserves%29%20%E2%80%93%20390%20%E2%82%AC%2Fany%20%28%2B%20IVA%29%0A%5B%20%5D%20Opci%C3%B3%20B%3A%20Banner%20Informatiu%20Corporatiu%20%28pres%C3%A8ncia%20est%C3%A0tica%20i%20fitxa%20a%20Entitats%20Col%C2%B7laboradores%29%20%E2%80%93%20190%20%E2%82%AC%2Fany%20%28%2B%20IVA%29%0A%0A3.%20ELEMENTS%20PER%20A%20LA%20CREACI%C3%93%20O%20PUBLICACI%C3%93%20DEL%20BANNER%0A-%20Enlla%C3%A7%20de%20destinaci%C3%B3%20%28nom%C3%A9s%20per%20a%20l%27Opci%C3%B3%20A%29%3A%20%0A-%20Text%20del%20bot%C3%B3%20d%27acci%C3%B3%20preferit%3A%20%0A-%20Frase%20breu%20de%20reclam%20%28m%C3%A0xim%201%20l%C3%ADnia%29%3A%20%0A%0A4.%20ASSIST%C3%88NCIA%20EN%20DISSENY%0A%5B%20%5D%20Ja%20us%20adjunto%20el%20material%20gr%C3%A0fic%20necessari.%0A%5B%20%5D%20Us%20adjunto%20directament%20els%20fitxers%20finals%20en%201200x200%20px%20i%20360x180%20px.%0A%0AObservacions%20o%20comentaris%20addicionals%3A%0A%0AAtentament%2C%0A%5BEl%20teu%20nom%5D%0A%5BTel%C3%A8fon%20de%20contacte%5D"
+              >
+                Sol·licita la contractació: ruta.silenci@gmail.com
+              </a>
+
+              <span class="pulsing-notice">
+                👉 Clica el botó per saber quina informació necessitem per fer el teu banner
+              </span>
             </div>
+
+            <div class="phone-contact-note">
+              o bé truca'ns al tel. <a href="tel:622566385">622 566 385</a>
+            </div>
+          </div>
+
+          <div class="notes-grid">
             <div class="note-box">
               <strong>Referència de mercat:</strong> tarifes digitals 2026 consultades en mitjans i portals especialitzats; els formats premium en webs amb audiència consolidada tenen preus molt superiors. La tarifa proposada aquí és deliberadament d’entrada per a un projecte nou.
             </div>
