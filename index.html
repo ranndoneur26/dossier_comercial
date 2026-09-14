@@ -59,46 +59,29 @@
     .header-container {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 14px 24px;
+      padding: 8px 24px;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
     .brand-link {
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      gap: 16px;
       text-decoration: none;
-      color: inherit;
+      line-height: 0;
     }
 
     .brand-logo-img {
-      height: 52px;
+      height: 84px;
       width: auto;
       object-fit: contain;
+      display: block;
+      transition: transform 0.2s ease;
     }
 
-    .brand-meta {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .brand-title {
-      font-family: var(--font-serif);
-      font-size: 1.15rem;
-      letter-spacing: 0.15em;
-      color: var(--color-burgundy);
-      font-weight: 700;
-      text-transform: uppercase;
-    }
-
-    .brand-sub {
-      font-size: 0.72rem;
-      letter-spacing: 0.22em;
-      color: var(--color-terracotta);
-      font-weight: 600;
-      text-transform: uppercase;
+    .brand-link:hover .brand-logo-img {
+      transform: scale(1.02);
     }
 
     .nav-links {
@@ -120,7 +103,7 @@
     }
 
     .btn-header-cta {
-      padding: 8px 18px;
+      padding: 9px 20px;
       background-color: var(--color-burgundy);
       color: #ffffff !important;
       border-radius: var(--radius-sm);
@@ -869,32 +852,18 @@
     .site-main-footer {
       background: var(--color-burgundy-dark);
       color: #ffffff;
-      padding: 48px 24px;
+      padding: 36px 24px;
       text-align: center;
       border-top: 3px solid var(--color-gold);
     }
 
-    .site-main-footer .footer-logo {
-      height: 60px;
-      margin-bottom: 16px;
-      filter: brightness(0) invert(1);
-    }
-
-    .site-main-footer p {
-      font-size: 0.88rem;
-      color: rgba(255, 255, 255, 0.7);
-      max-width: 600px;
-      margin: 0 auto 12px;
-    }
-
-    .site-main-footer a {
+    .footer-title {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 700;
       color: var(--color-gold-light);
-      text-decoration: none;
-      font-weight: 600;
-    }
-
-    .site-main-footer a:hover {
-      text-decoration: underline;
     }
 
     /* Responsive */
@@ -919,6 +888,10 @@
         flex-direction: column;
         align-items: flex-start;
       }
+
+      .brand-logo-img {
+        height: 68px;
+      }
     }
   </style>
 </head>
@@ -927,12 +900,8 @@
   <!-- Site Navigation Header -->
   <header class="site-header">
     <div class="header-container">
-      <a href="#proposta" class="brand-link">
+      <a href="#proposta" class="brand-link" aria-label="El Camí del Prior">
         <img src="images/logo-cami-prior.jpg" alt="El Camí del Prior" class="brand-logo-img">
-        <div class="brand-meta">
-          <span class="brand-title">El Camí del Prior</span>
-          <span class="brand-sub">Dossier Comercial Premium</span>
-        </div>
       </a>
       <nav class="nav-links">
         <a href="#proposta">Proposta Comercial</a>
@@ -1264,9 +1233,7 @@
 
   <!-- Site Global Footer -->
   <footer class="site-main-footer">
-    <img src="images/logo-cami-prior.jpg" alt="El Camí del Prior" class="footer-logo">
-    <p>Dossier Comercial · Format Únic d’Anunci Premium · El Camí del Prior</p>
-    <p>Més informació i reserves a <a href="https://ruta-circular-priorat.vercel.app" target="_blank" rel="noopener noreferrer">ruta-circular-priorat.vercel.app</a></p>
+    <div class="footer-title">El Camí del Prior</div>
   </footer>
 
 </body>
