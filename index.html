@@ -1448,11 +1448,6 @@
           </div>
         </div>
 
-        <div class="info-callout-block">
-          <h5>Entitats col·laboradores</h5>
-          <p>La pàgina de directori “Entitats Col·laboradores” es troba en desenvolupament. Quan estigui publicada, el Pla Col·laborador hi podrà incloure una fitxa o enllaç institucional.</p>
-        </div>
-
         <!-- Què necessitem de tu -->
         <div style="margin-top: 44px;">
           <div class="section-intro-lead" style="margin-bottom: 20px;">
@@ -1717,6 +1712,25 @@
     (function () {
       var form = document.getElementById('advertiser-contact-form');
       if (!form) return;
+
+      // Missatges de validació natius en català
+      var requiredFields = form.querySelectorAll('[required]');
+      for (var i = 0; i < requiredFields.length; i++) {
+        (function (field) {
+          field.addEventListener('invalid', function () {
+            if (field.validity.valueMissing) {
+              field.setCustomValidity('Aquest camp és obligatori.');
+            } else if (field.type === 'email' && field.validity.typeMismatch) {
+              field.setCustomValidity('Introdueix una adreça de correu electrònic vàlida.');
+            } else {
+              field.setCustomValidity('');
+            }
+          });
+          field.addEventListener('input', function () {
+            field.setCustomValidity('');
+          });
+        })(requiredFields[i]);
+      }
 
       form.addEventListener('submit', function (event) {
         event.preventDefault();
